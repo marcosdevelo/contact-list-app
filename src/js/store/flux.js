@@ -38,7 +38,8 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			addContact(contact) {
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				console.log(vacio);
+				fetch("https://assets.breatheco.de/apis/fake/contact", {
 					method: "POST",
 					body: JSON.stringify(contact),
 					headers: {
