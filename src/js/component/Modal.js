@@ -64,6 +64,7 @@ class Modal extends React.Component {
 					);
 				}}
 			</Context.Consumer>
+			///this.props.history.push
 		);
 	}
 }

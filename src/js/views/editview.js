@@ -17,10 +17,11 @@ export default class AddContact extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
+                    if(this.state.full_name == null) this.setState(store.contacts.find(c => c.id === this.props.match.params.id))
 					return (
 						<div className="container">
 							<div>
-								<h1 className="text-center mt-5">Add a new contact</h1>
+								<h1 className="text-center mt-5">Edit contact</h1>
 								<form>
 									<div className="form-group">
 										<label>Full Name</label>
@@ -29,6 +30,7 @@ export default class AddContact extends React.Component {
 											type="text"
 											className="form-control"
 											placeholder="Full Name"
+                                            value={this.state.full_name}
 										/>
 									</div>
 									<div className="form-group">

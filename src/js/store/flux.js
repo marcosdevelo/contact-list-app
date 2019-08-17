@@ -38,8 +38,8 @@ const getState = ({ getStore, setStore }) => {
 					});
 			},
 			addContact(contact) {
-				console.log(vacio);
-				fetch("https://assets.breatheco.de/apis/fake/contact", {
+				console.log("vacio", contact);
+				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify(contact),
 					headers: {
@@ -56,15 +56,39 @@ const getState = ({ getStore, setStore }) => {
 						//here is were your code should start after the fetch finishes
 						console.log(data); //this will print on the console the exact object received from the server
 						setStore({
-							agenda: store.agenda.concat(contact)
+							agenda: store.agenda.concat(data)
 						});
+						this.props.history.push("/contacts");
 					})
 					.catch(error => {
 						//error handling
-						console.log(error);
+						console.log("hubo un error en fetch save", error);
 						alert("Error!!!!!!!!!!!!!!!!!!!!!");
 					});
 			}
+		},
+		editContact(contact) {
+			fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
+				method: "PUT",
+				headers: { "Content-Type": "Application/json" },
+				body: JSON.stringify({
+					full_name: name,
+					email: email,
+					agenda_slug: "marcosAgenda",
+					address: address,
+					phone: phone
+				})
+			});
+			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/da_best_agenda")
+				.then(resp => resp.json())
+				.then(data => {
+					//console.log(data);
+					let store = this.state.store;
+					this.setState({ store: { ...store, agenda: data } });
+				})
+				.catch(error => {
+					//console.log(error);
+				});
 		}
 	};
 };
