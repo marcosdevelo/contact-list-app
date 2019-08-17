@@ -30,7 +30,7 @@ class ContactCard extends React.Component {
 										</div>
 										<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 											<div className=" float-right">
-												<Link className="btn btn-success" to="/edit/:id">
+												<Link className="btn btn-success" to={"/edit/" + item.id}>
 													<i className="fas fa-pencil-alt mr-3" />
 												</Link>
 

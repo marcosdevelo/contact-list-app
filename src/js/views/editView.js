@@ -20,7 +20,7 @@ export default class EditView extends React.Component {
 			<Context.Consumer>
 				{({ store, actions }) => {
 					if (this.state.full_name == null)
-						this.setState(store.contacts.find(c => c.id === this.props.match.params.id));
+						this.setState(store.agenda.find(c => c.id === this.props.match.params.id));
 					return (
 						<div className="container">
 							<div>
@@ -43,6 +43,7 @@ export default class EditView extends React.Component {
 											type="email"
 											className="form-control"
 											placeholder="Enter email"
+											value={this.state.email}
 										/>
 									</div>
 									<div className="form-group">
@@ -52,6 +53,7 @@ export default class EditView extends React.Component {
 											type="phone"
 											className="form-control"
 											placeholder="Enter phone"
+											value={this.state.phone}
 										/>
 									</div>
 									<div className="form-group">
@@ -61,11 +63,12 @@ export default class EditView extends React.Component {
 											type="text"
 											className="form-control"
 											placeholder="Enter address"
+											value={this.state.address}
 										/>
 									</div>
 									<button
 										onClick={() => {
-											actions.addContact(this.state);
+											actions.editContact(this.state, this.props.history);
 										}}
 										type="button"
 										className="btn btn-primary form-control">
@@ -85,5 +88,6 @@ export default class EditView extends React.Component {
 }
 
 EditView.propTypes = {
-	match: PropTypes.object
+	match: PropTypes.object,
+	history: PropTypes.object
 };

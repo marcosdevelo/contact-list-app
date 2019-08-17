@@ -37,7 +37,7 @@ const getState = ({ getStore, setStore }) => {
 						 **/
 					});
 			},
-			addContact(contact) {
+			addContact(contact, history) {
 				console.log("vacio", contact);
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
@@ -58,37 +58,41 @@ const getState = ({ getStore, setStore }) => {
 						setStore({
 							agenda: store.agenda.concat(data)
 						});
-						this.props.history.push("/contacts");
+						history.push("/contacts");
 					})
 					.catch(error => {
 						//error handling
 						console.log("hubo un error en fetch save", error);
 						alert("Error!!!!!!!!!!!!!!!!!!!!!");
 					});
-			}
-		},
-		editContact(contact) {
-			fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
-				method: "PUT",
-				headers: { "Content-Type": "Application/json" },
-				body: JSON.stringify({
-					full_name: name,
-					email: email,
-					agenda_slug: "marcosAgenda",
-					address: address,
-					phone: phone
-				})
-			});
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/da_best_agenda")
-				.then(resp => resp.json())
-				.then(data => {
-					//console.log(data);
-					let store = this.state.store;
-					this.setState({ store: { ...store, agenda: data } });
-				})
-				.catch(error => {
-					//console.log(error);
+			},
+			editContact(contact, history) {
+				console.log("holaaaa", contact);
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
+					method: "PUT",
+					headers: { "Content-Type": "Application/json" },
+					body: JSON.stringify({
+						full_name: contact.full_name,
+						email: contact.email,
+						agenda_slug: "marcosAgenda",
+						address: contact.address,
+						phone: contact.phone
+					})
+				}).then(res => {
+					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda")
+						.then(resp => resp.json())
+						.then(data => {
+							//console.log(data);
+							const store = getStore();
+							setStore({ agenda: data });
+							history.push("/contacts");
+						})
+
+						.catch(error => {
+							//console.log(error);
+						});
 				});
+			}
 		}
 	};
 };

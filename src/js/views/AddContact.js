@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 export default class AddContact extends React.Component {
 	constructor(props) {
 		super(props);
@@ -60,7 +61,7 @@ export default class AddContact extends React.Component {
 									</div>
 									<button
 										onClick={() => {
-											actions.addContact(this.state);
+											actions.addContact(this.state, this.props.history);
 										}}
 										type="button"
 										className="btn btn-primary form-control">
@@ -78,3 +79,7 @@ export default class AddContact extends React.Component {
 		);
 	}
 }
+
+AddContact.propTypes = {
+	history: PropTypes.object
+};
