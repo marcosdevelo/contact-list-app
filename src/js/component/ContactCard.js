@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 class ContactCard extends React.Component {
 	constructor() {
@@ -29,9 +30,10 @@ class ContactCard extends React.Component {
 										</div>
 										<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 											<div className=" float-right">
-												<button onClick={() => editContact()} className="btn">
+												<Link className="btn btn-success" to="/edit/:id">
 													<i className="fas fa-pencil-alt mr-3" />
-												</button>
+												</Link>
+
 												<button
 													className="btn"
 													onClick={() => this.props.onTrashCanClick(item.id)}>

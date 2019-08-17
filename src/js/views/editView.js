@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-export default class AddContact extends React.Component {
+import PropTypes from "prop-types";
+
+export default class EditView extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,7 +19,8 @@ export default class AddContact extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-                    if(this.state.full_name == null) this.setState(store.contacts.find(c => c.id === this.props.match.params.id))
+					if (this.state.full_name == null)
+						this.setState(store.contacts.find(c => c.id === this.props.match.params.id));
 					return (
 						<div className="container">
 							<div>
@@ -30,7 +33,7 @@ export default class AddContact extends React.Component {
 											type="text"
 											className="form-control"
 											placeholder="Full Name"
-                                            value={this.state.full_name}
+											value={this.state.full_name}
 										/>
 									</div>
 									<div className="form-group">
@@ -80,3 +83,7 @@ export default class AddContact extends React.Component {
 		);
 	}
 }
+
+EditView.propTypes = {
+	match: PropTypes.object
+};
