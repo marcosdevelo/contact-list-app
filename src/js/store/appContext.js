@@ -22,7 +22,7 @@ const injectContext = PassedComponent => {
 		}
 
 		componentDidMount() {
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda", {
+			fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact", {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json"

@@ -39,7 +39,7 @@ const getState = ({ getStore, setStore }) => {
 			},
 			addContact(contact, history) {
 				console.log("vacio", contact);
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact", {
 					method: "POST",
 					body: JSON.stringify(contact),
 					headers: {
@@ -68,7 +68,7 @@ const getState = ({ getStore, setStore }) => {
 			},
 			editContact(contact, history) {
 				console.log("holaaaa", contact);
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + contact.id, {
+				fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact" + id, {
 					method: "PUT",
 					headers: { "Content-Type": "Application/json" },
 					body: JSON.stringify({
@@ -79,10 +79,10 @@ const getState = ({ getStore, setStore }) => {
 						phone: contact.phone
 					})
 				}).then(res => {
-					fetch("https://assets.breatheco.de/apis/fake/contact/agenda/marcosAgenda")
+					fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact")
 						.then(resp => resp.json())
 						.then(data => {
-							//console.log(data);
+							//console.log(data);<int:id>
 							const store = getStore();
 							setStore({ agenda: data });
 							history.push("/contacts");
