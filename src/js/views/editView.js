@@ -20,8 +20,18 @@ export default class EditView extends React.Component {
 		return (
 			<Context.Consumer>
 				{({ store, actions }) => {
-					if (this.state.full_name == null)
-						this.setState(store.agenda.find(c => c.id === this.props.match.params.id));
+					if (this.state.full_name == null) {
+						const pupu = store.agenda.find(c => c.id === parseInt(this.props.match.params.id, 10));
+						this.setState(pupu);
+						console.log(
+							"Estamos reemplazando el state por este valor que tiene el id " +
+								this.props.match.params.id,
+							pupu
+						);
+					}
+
+					console.log("Este es el state: ", this.state);
+					console.log("Esta es la agenda: ", store.agenda);
 					return (
 						<div className="container">
 							<div>
