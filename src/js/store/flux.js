@@ -66,15 +66,14 @@ const getState = ({ getStore, setStore }) => {
 						alert("Error!!!!!!!!!!!!!!!!!!!!!");
 					});
 			},
-			editContact(contact, history) {
-				console.log("holaaaa", contact);
-				fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact" + id, {
+			editContact(contact, history, id) {
+				console.log("holaaaa", contact, id);
+				fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact/" + id, {
 					method: "PUT",
 					headers: { "Content-Type": "Application/json" },
 					body: JSON.stringify({
 						full_name: contact.full_name,
 						email: contact.email,
-						agenda_slug: "marcosAgenda",
 						address: contact.address,
 						phone: contact.phone
 					})
@@ -87,7 +86,6 @@ const getState = ({ getStore, setStore }) => {
 							setStore({ agenda: data });
 							history.push("/contacts");
 						})
-
 						.catch(error => {
 							//console.log(error);
 						});

@@ -79,7 +79,11 @@ export default class EditView extends React.Component {
 									</div>
 									<button
 										onClick={() => {
-											actions.editContact(this.state, this.props.history);
+											const pupu = store.agenda.find(
+												c => c.id === parseInt(this.props.match.params.id, 10)
+											);
+											console.log("pupu", pupu);
+											actions.editContact(this.state, this.props.history, pupu.id);
 										}}
 										type="button"
 										className="btn btn-primary form-control">
