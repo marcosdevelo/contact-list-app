@@ -9,7 +9,7 @@ const getState = ({ getStore, setStore }) => {
 		},
 		actions: {
 			deleteContact(id) {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+				fetch("https://3000-a6d88582-8de8-4e79-b616-6c63deea28f7.ws-us1.gitpod.io/contact/" + id, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
@@ -53,6 +53,7 @@ const getState = ({ getStore, setStore }) => {
 					})
 					.then(data => {
 						const store = getStore();
+
 						//here is were your code should start after the fetch finishes
 						console.log(data); //this will print on the console the exact object received from the server
 						setStore({
